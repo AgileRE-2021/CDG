@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Purple Admin</title>
     <!-- plugins:css -->
+
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -61,12 +62,14 @@
                   <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
               </div>
             </li>
+
             <li class="nav-item d-none d-lg-block full-screen-link">
               <a class="nav-link">
                 <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
+
+            {% comment %} <li class="nav-item dropdown">
               <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <i class="mdi mdi-email-outline"></i>
                 <span class="count-symbol bg-warning"></span>
@@ -106,8 +109,10 @@
                 <div class="dropdown-divider"></div>
                 <h6 class="p-3 mb-0 text-center">4 new messages</h6>
               </div>
-            </li>
-            <li class="nav-item dropdown">
+
+            </li> {% endcomment %}
+
+            {% comment %} <li class="nav-item dropdown">
               <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                 <i class="mdi mdi-bell-outline"></i>
                 <span class="count-symbol bg-danger"></span>
@@ -153,18 +158,21 @@
                 <div class="dropdown-divider"></div>
                 <h6 class="p-3 mb-0 text-center">See all notifications</h6>
               </div>
-            </li>
+            </li> {% endcomment %}
+
             <li class="nav-item nav-logout d-none d-lg-block">
               <a class="nav-link" href="#">
                 <i class="mdi mdi-power"></i>
               </a>
             </li>
+
             <li class="nav-item nav-settings d-none d-lg-block">
               <a class="nav-link" href="#">
                 <i class="mdi mdi-format-line-spacing"></i>
               </a>
             </li>
           </ul>
+
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="mdi mdi-menu"></span>
           </button>
@@ -296,10 +304,10 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th> # </th>
-                            <th> Name </th>
-                            <th> Due Date </th>
-                            <th> Progress </th>
+                            <th> No </th>
+                            <th> Projek </th>
+                            <th> Opsi </th>
+                            <th> Kelola </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -584,4 +592,4 @@
     <script src="{% static 'js/todolist.js' %}"></script>
     <!-- End custom js for this page -->
   </body>
-</html>s
+</html>
