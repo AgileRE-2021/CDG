@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>CDG</title>
     <!-- plugins:css -->
 
     {% load static %}
@@ -29,20 +29,14 @@
           <a class="navbar-brand brand-logo" href="index.html"><img src="{% static 'images/logo.svg' %}" alt="logo" /></a>
           <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/logo-mini.svg' %}" alt="logo" /></a>
         </div>
+
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
-              <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
-              </div>
-            </form>
-          </div>
+
+         
+          
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -198,21 +192,24 @@
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
               </a>
             </li> {% endcomment %}
+
             <li class="nav-item nav-profile">
               <span class="nav-link">
                 {% comment %} <div class="border-bottom">
                   <h6 class="font-weight-normal mb-3">Projek</h6>
                 </div> {% endcomment %}
-                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Tambah Projek</button>
+                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Tambah Proyek</button>
               </span>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="index.html">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Inisiasi Proyek</span>
+                <i class="mdi mdi-shape-polygon-plus menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
+
+            {% comment %} <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Basic UI Elements</span>
                 <i class="menu-arrow"></i>
@@ -224,32 +221,37 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                 </ul>
               </div>
-            </li>
+            </li> {% endcomment %}
+
             <li class="nav-item">
               <a class="nav-link" href="pages/icons/mdi.html">
-                <span class="menu-title">Icons</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <span class="menu-title">Translasi Proyek</span>
+                <i class="mdi mdi-sync menu-icon"></i>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="pages/forms/basic_elements.html">
-                <span class="menu-title">Forms</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                <span class="menu-title">Hasil Translasi</span>
+                <i class="mdi mdi-clipboard-text menu-icon"></i>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="pages/charts/chartjs.html">
-                <span class="menu-title">Charts</span>
-                <i class="mdi mdi-chart-bar menu-icon"></i>
+                <span class="menu-title">User Manual</span>
+                <i class="mdi mdi-video menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
+
+            {% comment %} <li class="nav-item">
               <a class="nav-link" href="pages/tables/basic-table.html">
                 <span class="menu-title">Tables</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> {% endcomment %}
+
+            {% comment %} <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Sample Pages</span>
                 <i class="menu-arrow"></i>
@@ -264,7 +266,7 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
                 </ul>
               </div>
-            </li>
+            </li> {% endcomment %}
             
           </ul>
         </nav>
@@ -280,17 +282,35 @@
                 </span> {% endcomment %}
               </div>
             </div>
+
+{% comment %} body {% endcomment %}
+
             <div class="page-header">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                  <i class="mdi mdi-home"></i>
-                </span> Dashboard
+                  <i class="mdi mdi-presentation"></i>
+                </span> Data Proyek
               </h3>
+
+               
+
               <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
+                  {% comment %} <li class="breadcrumb-item active" aria-current="page">
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                  </li>
+                  </li> {% endcomment %}
+
+                  <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                      <div class="input-group">
+                        <div class="input-group-prepend bg-transparent">
+                          <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                        </div>
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proyek">
+                      </div>
+                    </form>
+                  </div>
+                  
                 </ul>
               </nav>
             </div>
@@ -299,13 +319,13 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Project Status</h4>
+                    <h4 class="card-title">Daftar Proyek</h4>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
                             <th> No </th>
-                            <th> Projek </th>
+                            <th> Proyek </th>
                             <th> Opsi </th>
                             <th> Kelola </th>
                           </tr>
@@ -313,64 +333,46 @@
                         <tbody>
                           <tr>
                             <td> 1 </td>
-                            <td> Herman Beck </td>
-                            <td> May 15, 2015 </td>
+                            <td> Membangun Rumah </td>
+                            <td> 
+                            <button type="button" class="btn btn-gradient-info btn-rounded btn-icon">
+                            <i class="mdi mdi-lead-pencil"></i>
+                            </button> 
+                            
+                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon">
+                            <i class="mdi mdi-delete"></i>
+                            </button>
+
+                            </td>
                             <td>
-                              <div class="progress">
+                              {% comment %} <div class="progress">
                                 <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
+                              </div> {% endcomment %}
+                              <button type="button" class="btn btn-success btn-fw">Unggah</button>
                             </td>
                           </tr>
+                          
                           <tr>
                             <td> 2 </td>
-                            <td> Messsy Adam </td>
-                            <td> Jul 01, 2015 </td>
+                            <td> Membangun Perusahaan </td>
+                            <td> 
+                            <button type="button" class="btn btn-gradient-info btn-rounded btn-icon">
+                            <i class="mdi mdi-lead-pencil"></i>
+                            </button> 
+                            
+                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon">
+                            <i class="mdi mdi-delete"></i>
+                            </button>
+
+                            </td>
                             <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
+                              {% comment %} <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div> {% endcomment %}
+                              <button type="button" class="btn btn-success btn-fw">Unggah</button>
                             </td>
                           </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> John Richards </td>
-                            <td> Apr 12, 2015 </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Peter Meggik </td>
-                            <td> May 15, 2015 </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Edward </td>
-                            <td> May 03, 2015 </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Ronald </td>
-                            <td> Jun 05, 2015 </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                          </tr>
+                       
                         </tbody>
                       </table>
                     </div>
@@ -380,7 +382,7 @@
             </div>
             
 
-            <div class="row">
+            {% comment %} <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -559,14 +561,14 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> {% endcomment %}
 
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © kelompok 4 2021</span>
+              {% comment %} <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span> {% endcomment %}
             </div>
           </footer>
           <!-- partial -->
@@ -575,6 +577,8 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+
+    
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>

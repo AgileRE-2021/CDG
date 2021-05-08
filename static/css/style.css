@@ -4006,6 +4006,7 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(171, 166, 167, 0.5); }
 
 .btn-success {
+  border-radius: 8px;
   color: #212529;
   background-color: #1bcfb4;
   border-color: #1bcfb4; }
@@ -4371,10 +4372,10 @@ fieldset:disabled a.btn {
     pointer-events: none; }
 
 .btn-lg, .btn-group-lg > .btn {
-  padding: 1rem 3rem;
+  padding: 1rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 0.1875rem; }
+  border-radius: 8px; }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.5rem 0.81rem;
@@ -5871,8 +5872,8 @@ input[type="button"].btn-block {
   margin-bottom: 1rem;
   font-size: 0.875rem;
   list-style: none;
-  background-color: transparent;
-  border-radius: 0.25rem; }
+  background-color: #fff;
+  border-radius: 8px; }
 
 .breadcrumb-item {
   display: -webkit-box;
@@ -10526,7 +10527,7 @@ code {
 .footer {
   background: #f2edf3;
   border-top: 1px solid #e7dee9;
-  padding: 30px 1rem;
+  padding: 10px 1rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -webkit-transition: all 0.25s ease;
