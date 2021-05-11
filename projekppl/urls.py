@@ -19,5 +19,7 @@ from.import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home )
+    path('', views.splash, name='splash' ),
+    path('home', views.home, name='home' ),
+    path('translasi', views.translasi, name='translasi')
 ]
