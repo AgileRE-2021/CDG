@@ -216,20 +216,19 @@
                   </div>
                   <div class="modal-body">
 
-                    <form method="post" action="/home">
+                    <form method="post" action="/tambah_proyek">
                       {% csrf_token %}
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nama Proyek:</label>
-                        <input name="proyek" type="text" class="form-control" id="recipient-name">
+                        <input name="nama_proyek" type="text" class="form-control" id="recipient-name">{{ form.nama_proyek }}
                       </div>
-                      
-                    </form>
 
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" value="" class="btn btn-primary">Tambah</button>
                   </div>
+                    </form>
                 </div>
               </div>
             </div>
@@ -334,10 +333,11 @@
                         
                         <tbody>
 
-                        
-                          <tr>
-                            <td> 1 </td>
-                            <td> Bangun Kehidupan </td>
+                          {% if posts %}
+                          <tr>                      
+                              {% for proyek in posts %}  
+                            <td> {{ forloop.counter }} </td>
+                            <td> {{ proyek.nama_proyek }} </td>
                             <td> 
                             <button type="button" class="btn btn-gradient-info btn-rounded btn-icon">
                             <i class="mdi mdi-lead-pencil"></i>
@@ -355,6 +355,11 @@
                               <button type="button" class="btn btn-success btn-fw">Kelola</button>
                             </td>
                           </tr>
+                          {% endfor %}
+                              </ul>
+                          {% else %}
+                              <p>No polls are available.</p>
+                          {% endif %}
                          
 
                         </tbody>

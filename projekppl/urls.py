@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.splash, name='splash' ),
     path('home', views.home, name='home' ),
+    path('tambah_proyek', views.tambah_proyek),  
     path('translasi', views.translasi, name='translasi'),
     path('hasil', views.hasil, name='hasil'),
 
