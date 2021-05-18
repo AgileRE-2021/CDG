@@ -4019,15 +4019,15 @@ fieldset:disabled a.btn {
 .btn-success {
   border-radius: 8px;
   color: #212529;
-  background-color: #fff;
+  background-color: #1bcfb4;
   border-color: #1bcfb4; }
   .btn-success:hover {
     color: #fff;
-    background-color: #fff;
+    background-color: #15a28d;
     border-color: #15a28d; }
   .btn-success:focus, .btn-success.focus {
     color: #fff;
-    background-color: #fff;
+    background-color: #15a28d;
     border-color: #15a28d;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(28, 182, 159, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(28, 182, 159, 0.5); }
@@ -6598,18 +6598,21 @@ a.close.disabled {
   overflow: hidden; }
   .modal-open .modal {
     overflow-x: hidden;
-    overflow-y: auto; }
-
+    overflow-y: auto;
+     }
+  
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 1060;
   display: none;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  outline: 0; }
+  outline: 0; 
+ 
+}
 
 .modal-dialog {
   position: relative;
