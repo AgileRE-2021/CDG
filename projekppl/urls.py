@@ -21,7 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.splash, name='splash' ),
     path('home', views.home, name='home' ),
-    path('tambah_proyek', views.tambah_proyek),  
     path('translasi', views.translasi, name='translasi'),
     path('hasil', views.hasil, name='hasil'),
 
@@ -29,5 +28,7 @@ urlpatterns = [
 
 # ==== crud ====
 #add proyek
-    path('addproyek',views.addproyek, name='addproyek'),
+    path('tambah_proyek', views.tambah_proyek),
+    path('ganti_proyek/<int:id>', views.ganti_proyek),
+    path('destroy_proyek/<int:id>', views.destroy_proyek),    
 ]

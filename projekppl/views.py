@@ -24,6 +24,19 @@ def tambah_proyek(request):
         form = ProyekForm()  
     return render(request,'index.html',{'form':form})
 
+def ganti_proyek(request, id):  
+    proyek = Proyek.objects.get(id=id)  
+    form = ProyekForm(request.POST, instance = proyek)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("/home")  
+    return render(request, 'index.html', {'proyek': proyek})  
+
+def destroy_proyek(request, id):  
+    proyek = Proyek.objects.get(id=id)  
+    proyek.delete()  
+    return redirect('/home')   
+
 def translasi(request):
     return render(request,'translasi.html')
 
