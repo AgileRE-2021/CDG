@@ -194,14 +194,6 @@
               </a>
             </li> {% endcomment %}
 
-            <li class="nav-item nav-profile">
-              <span class="nav-link">
-                {% comment %} <div class="border-bottom">
-                  <h6 class="font-weight-normal mb-3">Projek</h6>
-                </div> {% endcomment %}
-                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Tambah Proyek</button>
-              </span>
-            </li>
 
             <li class="nav-item ">
               <a class="nav-link" href="home">
@@ -210,12 +202,12 @@
               </a>
             </li>
 
-            <li class="nav-item active">
+            {% comment %} <li class="nav-item active">
               <a class="nav-link" href="translasi">
                 <span class="menu-title">Translasi Proyek</span>
                 <i class="mdi mdi-sync menu-icon"></i>
               </a>
-            </li>
+            </li> {% endcomment %}
 
             <li class="nav-item">
               <a class="nav-link" href="database">
@@ -261,15 +253,23 @@
                   <i class="mdi mdi-file-document"></i>
                 </span> Data Proses
               </h3>
-
-               
-
+              
               <nav aria-label="breadcrumb">
+              
                 <ul class="breadcrumb">
                   {% comment %} <li class="breadcrumb-item active" aria-current="page">
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                   </li> {% endcomment %}
 
+                  <li class="nav-item nav-profile">
+                    <span class="nav-link">
+                      {% comment %} <div class="border-bottom">
+                        <h6 class="font-weight-normal mb-3">Projek</h6>
+                      </div> {% endcomment %}
+                      <button class="btn btn-block btn-lg btn-gradient-primary">+ Tambah Proses</button>
+                    </span>
+                  </li>
+                  
                   <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                       <div class="input-group">
