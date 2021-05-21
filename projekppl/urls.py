@@ -21,7 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.splash, name='splash' ),
     path('home', views.home, name='home' ),
-    path('translasi', views.translasi, name='translasi'),
     path('hasil', views.hasil, name='hasil'),
 
     path('database', views.database, name='database'),
@@ -30,5 +29,10 @@ urlpatterns = [
 #add proyek
     path('tambah_proyek', views.tambah_proyek),
     path('ganti_proyek/<int:id>', views.ganti_proyek),
-    path('destroy_proyek/<int:id>', views.destroy_proyek),    
+    path('destroy_proyek/<int:id>', views.destroy_proyek),
+#add proses
+    path('translasi/<int:id>', views.translasi, name='translasi_proses'),
+    path('tambah_proses/<int:id>', views.tambah_proses, name='tambah_proses'),
+    path('ganti_proses/<int:id>', views.ganti_proses),
+    path('destroy_proses/<int:id>', views.destroy_proses),
 ]

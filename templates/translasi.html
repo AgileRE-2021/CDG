@@ -196,7 +196,7 @@
 
 
             <li class="nav-item ">
-              <a class="nav-link" href="home">
+              <a class="nav-link" href="/home">
                 <span class="menu-title">Inisiasi Proyek</span>
                 <i class="mdi mdi-shape-polygon-plus menu-icon"></i>
               </a>
@@ -253,7 +253,7 @@
                   <i class="mdi mdi-file-document"></i>
                 </span> Data Proses
               </h3>
-              
+
               <nav aria-label="breadcrumb">
               
                 <ul class="breadcrumb">
@@ -266,7 +266,8 @@
                       {% comment %} <div class="border-bottom">
                         <h6 class="font-weight-normal mb-3">Projek</h6>
                       </div> {% endcomment %}
-                      <button class="btn btn-block btn-lg btn-gradient-primary">+ Tambah Proses</button>
+                      <button class="btn btn-block btn-lg btn-gradient-primary"
+                      data-toggle="modal" data-target="#exampleModaltambah">+ Tambah Proses</button>
                     </span>
                   </li>
                   
@@ -301,17 +302,21 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Membangun Rumah </td>
+                        {% if posts %}
+                          <tr>                      
+                            {% for proses in posts %}
+                            <td> {{ forloop.counter }} </td>
+                            <td> {{ proses.nama_proses }} </td>
                             <td> 
-                            <button type="button" class="btn btn-gradient-info btn-rounded btn-icon">
+                            <button type="button" data-toggle="modal" data-target="#modal-{{proses.id}}" class="btn btn-gradient-info btn-rounded btn-icon">
                             <i class="mdi mdi-lead-pencil"></i>
                             </button> 
-                            
-                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon">
+
+                            <a href="/destroy_proses/{{proses.id}}" onclick="return confirm('Yakin ingin hapus')"> 
+                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"> 
                             <i class="mdi mdi-delete"></i>
                             </button>
+                            </a>
 
                             </td>
                             <td>
@@ -321,27 +326,39 @@
                               <button type="button" class="btn btn-success btn-fw">Unggah</button>
                             </td>
                           </tr>
-                          
-                          <tr>
-                            <td> 2 </td>
-                            <td> Membangun Perusahaan </td>
-                            <td> 
-                            <button type="button" class="btn btn-gradient-info btn-rounded btn-icon">
-                            <i class="mdi mdi-lead-pencil"></i>
-                            </button> 
-                            
-                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon">
-                            <i class="mdi mdi-delete"></i>
-                            </button>
 
-                            </td>
-                            <td>
-                              {% comment %} <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div> {% endcomment %}
-                              <button type="button" class="btn btn-success btn-fw">Unggah</button>
-                            </td>
-                          </tr>
+                          <div class="modal fade" data-backdrop="false" id="modal-{{proses.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+
+                                  <form method="post" action="/ganti_proses/{{proses.id}}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="recipient-name" class="col-form-label">Ganti Nama Proses</label>
+                                      <input name="nama_proses" value="{{proses.nama_proses}}" type="text" class="form-control" id="recipient-name">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                  <button type="submit" value="" class="btn btn-primary">Ganti</button>
+                                </div>
+                                  </form>
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                              </ul>
+                          {% else %}
+                              <p>Proyek ini belum memiliki proses</p>
+                          {% endif %}
                        
                         </tbody>
                       </table>
@@ -388,5 +405,33 @@
     <script src="{% static 'js/dashboard.js' %}"></script>
     <script src="{% static 'js/todolist.js' %}"></script>
     <!-- End custom js for this page -->
+
+      <!-- Modal -->
+  <div class="modal fade" data-backdrop="false" id="exampleModaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/tambah_proses/{{idproyek}}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Nama Proses:</label>
+              <input name="nama_proses" type="text" class="form-control" id="recipient-name">{{ form.nama_proses }}
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" value="" class="btn btn-primary">Tambah</button>
+        </div>
+          </form>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
