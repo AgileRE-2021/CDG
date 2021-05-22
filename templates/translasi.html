@@ -292,7 +292,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Daftar Proses</h4>
                     <div class="table-responsive">
-                      <table class="table">
+                      <table class="table" id="tabel_proses">
                         <thead>
                           <tr>
                             <th> No </th>
@@ -320,10 +320,18 @@
 
                             </td>
                             <td>
+                              <form method="post" enctype="multipart/form-data" action="/upload_bpmn/{{proses.id}}" name="upload_bpmn">
+                              {% csrf_token %}
+                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn">
                               {% comment %} <div class="progress">
                                 <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                               </div> {% endcomment %}
-                              <button type="button" class="btn btn-success btn-fw">Unggah</button>
+                              <button type="submit" name="uploaddd" class="btn btn-success btn-fwa" id="unggah">Unggah</button>
+                              </form>
+
+                              <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                              <script type="text/javascript">
+                              </script>
                             </td>
                           </tr>
 
