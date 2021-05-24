@@ -35,4 +35,6 @@ urlpatterns = [
     path('tambah_proses/<int:id>', views.tambah_proses, name='tambah_proses'),
     path('ganti_proses/<int:id>', views.ganti_proses),
     path('destroy_proses/<int:id>', views.destroy_proses),
+
+    
 ]

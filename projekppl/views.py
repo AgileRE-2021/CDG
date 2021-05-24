@@ -7,9 +7,10 @@ from django.urls import reverse
 def splash(request):
     return render(request, 'splash.html')
 
+#inisiasi proyek
 def home(request):   
-    posts=Proyek.objects.all()
-    return render(request,'index.html',{'posts':posts})
+    proyek = Proyek.objects.all()
+    return render(request,'index.html',{'posts':proyek})
 
 def tambah_proyek(request):  
     if request.method == "POST":  
@@ -37,12 +38,15 @@ def destroy_proyek(request, id):
     proyek.delete()  
     return redirect('/home')   
 
+#translasi proyek
 def translasi(request, id):
     proses = Proses.objects.filter(proyek_id=id)
-    return render(request,'translasi.html',{'posts':proses , 'idproyek' : id})
+    proyek = Proyek.objects.get(id=id)
+    return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek})
 
 def tambah_proses(request, id):
     proses = Proses.objects.filter(proyek_id=id)
+    proyek = Proyek.objects.get(id=id)
     form = ProsesForm()
     if request.method == 'POST':
         proyekID = Proyek.objects.get(id=id)
@@ -53,7 +57,7 @@ def tambah_proses(request, id):
             formulir = form.save(commit=False)
             formulir.proyek = proyekID
             formulir.save()
-            return render(request,'translasi.html',{'posts':proses , 'idproyek' : id})
+            return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek})
         else:
             print("FORM GA VALID")
     context = {'form': form}
@@ -61,18 +65,21 @@ def tambah_proses(request, id):
 
 def ganti_proses(request, id):  
     proses = Proses.objects.get(id=id)
+    proyek = Proyek.objects.get(id=proses.proyek_id)
     proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
     form = ProsesForm(request.POST, instance = proses)  
     if form.is_valid():  
         form.save()  
-        return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id}) 
+        return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id , 'proyek':proyek}) 
     return redirect('/home')  
 
-def destroy_proses(request, id):  
+def destroy_proses(request, id): 
+     
     proses = Proses.objects.get(id=id)
     proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
-    proses.delete()  
-    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id}) 
+    proyek = Proyek.objects.get(id=proses.proyek_id) 
+    proses.delete()
+    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id, 'proyek':proyek}) 
 
 def hasil(request):
     return render(request,'hasil.html')
@@ -80,7 +87,7 @@ def hasil(request):
 def database(request):
     return render(request,'database.html')
 
-# crud
+#DATABASE
 
-def addproyek(request):
-    return render(request,'index.html')
+def database(request):
+    return render(request,'database.html')
