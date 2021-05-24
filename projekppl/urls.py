@@ -37,7 +37,7 @@ urlpatterns = [
     path('tambah_proses/<int:id>', views.tambah_proses, name='tambah_proses'),
     path('ganti_proses/<int:id>', views.ganti_proses),
     path('destroy_proses/<int:id>', views.destroy_proses),
-    path('upload_bpmn/<int:id>', views.upload_bpmn, name='upload_bpmn'),
+    path('upload_bpmn/<int:id>', views.upload_bpmn),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

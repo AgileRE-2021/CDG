@@ -19,6 +19,7 @@ class Generate(models.Model):
 class Proses(models.Model):
     proyek = models.ForeignKey(Proyek, on_delete=models.CASCADE)
     nama_proses = models.CharField(max_length=50)
+    bpmn_id = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.nama_proses

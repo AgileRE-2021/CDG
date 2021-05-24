@@ -322,7 +322,12 @@
                             <td>
                               <form method="post" enctype="multipart/form-data" action="/upload_bpmn/{{proses.id}}" name="upload_bpmn">
                               {% csrf_token %}
-                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn">
+                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn" Required>
+                                {% if proses.bpmn_id %}
+                                <p> File telah terunggah </p>
+                                {% else %}
+                                <p> File belum terunggah </p>
+                                {% endif %}
                               {% comment %} <div class="progress">
                                 <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                               </div> {% endcomment %}
