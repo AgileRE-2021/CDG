@@ -35,8 +35,6 @@
             <span class="mdi mdi-menu"></span>
           </button>
 
-         
-          
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -45,7 +43,7 @@
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">David Greymaax</p>
+                  <p class="mb-1 text-black">Kelompok 4</p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -62,97 +60,6 @@
                 <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
               </a>
             </li>
-
-            {% comment %} <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <i class="mdi mdi-email-outline"></i>
-                <span class="count-symbol bg-warning"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                <h6 class="p-3 mb-0">Messages</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{% static 'images/faces/face4.jpg' %}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                    <p class="text-gray mb-0"> 1 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{% static 'images/faces/face2.jpg' %}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                    <p class="text-gray mb-0"> 15 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{% static 'images/faces/face3.jpg' %}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                    <p class="text-gray mb-0"> 18 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-              </div>
-
-            </li> {% endcomment %}
-
-            {% comment %} <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell-outline"></i>
-                <span class="count-symbol bg-danger"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="mdi mdi-calendar"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="mdi mdi-settings"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="mdi mdi-link-variant"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-              </div>
-            </li> {% endcomment %}
 
             <li class="nav-item nav-logout d-none d-lg-block">
               <a class="nav-link" href="{% url 'splash' %}">
@@ -209,22 +116,22 @@
               </a>
             </li> {% endcomment %}
 
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
               <a class="nav-link" href="database">
                 <span class="menu-title">Database</span>
                 <i class="mdi mdi-database menu-icon"></i>
               </a>
-            </li>
+            </li> {% endcomment %}
 
             <li class="nav-item">
-              <a class="nav-link" href="hasil">
+              <a class="nav-link" href="/hasil">
                 <span class="menu-title">Hasil Translasi</span>
                 <i class="mdi mdi-clipboard-text menu-icon"></i>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="manual">
+              <a class="nav-link" href="/manual">
                 <span class="menu-title">User Manual</span>
                 <i class="mdi mdi-video menu-icon"></i>
               </a>
@@ -235,6 +142,15 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+
+          <ul class="breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb my-2">
+                <li class="breadcrumb-item"><a href="/home">Inisiasi Proyek</a></li>
+                <li class="breadcrumb-item active">Translasi Proyek - {{ proyek.nama_proyek }}</li>
+                
+            </ol>
+          </ul>
+
             <div class="row" id="proBanner">
               <div class="col-12">
                 {% comment %} <span class="d-flex align-items-center purchase-popup">
@@ -251,11 +167,10 @@
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-file-document"></i>
-                </span> Data Proses
+                </span>Data Proses - {{ proyek.nama_proyek }}
               </h3>
-
+     
               <nav aria-label="breadcrumb">
-              
                 <ul class="breadcrumb">
                   {% comment %} <li class="breadcrumb-item active" aria-current="page">
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
@@ -298,6 +213,7 @@
                             <th> No </th>
                             <th> Proses </th>
                             <th> Opsi </th>
+                            <th> Pilih File </th>
                             <th> Kelola </th>
                           </tr>
                         </thead>
@@ -309,34 +225,37 @@
                             <td> {{ proses.nama_proses }} </td>
                             <td> 
                             <button type="button" data-toggle="modal" data-target="#modal-{{proses.id}}" class="btn btn-gradient-info btn-rounded btn-icon">
-                            <i class="mdi mdi-lead-pencil"></i>
+                              <i class="mdi mdi-lead-pencil"></i>
                             </button> 
 
                             <a href="/destroy_proses/{{proses.id}}" onclick="return confirm('Yakin ingin hapus')"> 
-                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"> 
-                            <i class="mdi mdi-delete"></i>
-                            </button>
+                              <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"> 
+                                <i class="mdi mdi-delete"></i>
+                              </button>
                             </a>
 
                             </td>
                             <td>
                               <form method="post" enctype="multipart/form-data" action="/upload_bpmn/{{proses.id}}" name="upload_bpmn">
-                              {% csrf_token %}
-                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn" Required>
-                                {% if proses.bpmn_id %}
-                                <p> File telah terunggah </p>
-                                {% else %}
-                                <p> File belum terunggah </p>
-                                {% endif %}
-                              {% comment %} <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div> {% endcomment %}
-                              <button type="submit" name="uploaddd" class="btn btn-success btn-fwa" id="unggah">Unggah</button>
+                                {% csrf_token %}
+                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn actual-btn" Required>
+                                {% comment %} <div class="progress">
+                                  <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> {% endcomment %}
+                                <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                                <script type="text/javascript"></script>
+                            </td>
+                            <td>  
+                  
+                              <button type="submit" name="uploaddd" class="btn btn-success btn-fwa" id="unggah" >Unggah</button>
                               </form>
-
-                              <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-                              <script type="text/javascript">
-                              </script>
+                            <br>
+                            {% if proses.bpmn_id %}
+                             
+                                <h7 style="color:#0000CD";> File Telah Terunggah! </h7>
+                                {% else %}
+                                <h7 style="color:#FF0000";> File Belum Terunggah! </h7>
+                                {% endif %}
                             </td>
                           </tr>
 
@@ -355,7 +274,7 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                       <label for="recipient-name" class="col-form-label">Ganti Nama Proses</label>
-                                      <input name="nama_proses" value="{{proses.nama_proses}}" type="text" class="form-control" id="recipient-name">
+                                      <input required name="nama_proses" value="{{proses.nama_proses}}" type="text" class="form-control" id="recipient-name">
                                     </div>
 
                                 </div>
@@ -371,14 +290,14 @@
                               </ul>
                           {% else %}
                               <p>Proyek ini belum memiliki proses</p>
-                          {% endif %}
+                        {% endif %}
                        
                         </tbody>
                       </table>
                       <span class="nav-link ">
                         <div class="border-bottom"> 
                         </div>
-                        <a href="database" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Upload Database</a>
+                        <a href="/database" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Upload Database</a>
                       </span>
                     </div>
                   </div>
@@ -424,7 +343,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Peroses</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -434,7 +353,7 @@
             {% csrf_token %}
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Nama Proses:</label>
-              <input name="nama_proses" type="text" class="form-control" id="recipient-name">{{ form.nama_proses }}
+              <input required name="nama_proses" type="text" class="form-control" id="recipient-name">{{ form.nama_proses }}
             </div>
 
         </div>

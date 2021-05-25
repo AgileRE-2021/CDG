@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CDG</title>
     <!-- plugins:css -->
-    
+   
     {% load static %}
     
     <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% comment %} <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> {% endcomment %}
@@ -25,7 +21,6 @@
 
   <body>
     <div class="container-scroller">
-      
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -54,7 +49,7 @@
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/">
+                <a class="dropdown-item" href="">
                   <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
               </div>
               
@@ -91,20 +86,9 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
           
-            <li class="nav-item nav-profile">
-              <span class="nav-link">
-                {% comment %} <div class="border-bottom">
-                  <h6 class="font-weight-normal mb-3">Projek</h6>
-                </div> {% endcomment %}
-                <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" 
-                data-toggle="modal" data-target="#exampleModal">+ Tambah Proyek
-                </button>
-              </span>
-            </li>
-            
-
-            <li class="nav-item active">
-              <a class="nav-link" href="/home">
+           
+            <li class="nav-item">
+              <a class="nav-link" href="home">
                 <span class="menu-title">Inisiasi Proyek</span>
                 <i class="mdi mdi-shape-polygon-plus menu-icon"></i>
               </a>
@@ -126,14 +110,14 @@
             </li> {% endcomment %}
 
             <li class="nav-item">
-              <a class="nav-link" href="/hasil">
+              <a class="nav-link" href="hasil">
                 <span class="menu-title">Hasil Translasi</span>
                 <i class="mdi mdi-clipboard-text menu-icon"></i>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/manual">
+              <a class="nav-link" href="manual">
                 <span class="menu-title">User Manual</span>
                 <i class="mdi mdi-video menu-icon"></i>
               </a>
@@ -141,13 +125,15 @@
             
           </ul>
         </nav>
-        
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+
           <ul class="breadcrumb" aria-label="breadcrumb">
             <ol class="breadcrumb my-2">
-                <li class="breadcrumb-item active">Inisiasi Proyek</li>
+                <li class="breadcrumb-item active"><a href="/home">Inisiasi</a></li>
+                <li class="breadcrumb-item active"><a href="#">Translasi Proyek {{ proyek.nama_proyek }}</a></li>
+                <li class="breadcrumb-item">Upload Database Proyek {{ proyek.nama_proyek }}</li>
                 
             </ol>
           </ul>
@@ -165,18 +151,18 @@
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-presentation"></i>
-                </span> Data Proyek
+                </span> Database
               </h3>
 
                
 
-              <nav aria-label="breadcrumb " >
-                <ul class="breadcrumb nav-link" >
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
                   {% comment %} <li class="breadcrumb-item active" aria-current="page">
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                   </li> {% endcomment %}
 
-                  <div class="search-field d-none d-md-block">
+                  {% comment %} <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                       <div class="input-group">
                         <div class="input-group-prepend bg-transparent">
@@ -185,7 +171,7 @@
                         <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proyek">
                       </div>
                     </form>
-                  </div>
+                  </div> {% endcomment %}
 
                 </ul>
               </nav>
@@ -195,84 +181,39 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Daftar Proyek</h4>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> No </th>
-                            <th> Proyek </th>
-                            <th> Opsi </th>
-                            <th> Kelola </th>
-                          </tr>
-                        </thead>
-                        
-                        <tbody>
+                    <h4 class="card-title">Upload Database</h4>
 
-                          {% if posts %}
-                          <tr>                      
-                            {% for proyek in posts %}
-                            <td> {{ forloop.counter }} </td>
-                            <td> {{ proyek.nama_proyek }} </td>
-                            <td> 
-                            <button type="button" data-toggle="modal" data-target="#modal-{{proyek.id}}" class="btn btn-gradient-info btn-rounded btn-icon">
-                            <i class="mdi mdi-lead-pencil"></i>
-                            </button> 
-
-                            <a href="/destroy_proyek/{{proyek.id}}" onclick="return confirm('Yakin ingin hapus')"> 
-                            <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"> 
-                            <i class="mdi mdi-delete"></i>
-                            </button>
-                            </a>
-
-                            </td>
-                            <td>
-                              {% comment %} <div class="progress">
-                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div> {% endcomment %}
-                               <a href="/translasi/{{proyek.id}}"> <button type="button" class="btn btn-success btn-fw">Kelola</button> </a>
-                            </td>
-                          </tr>
-
-                        <!-- Modal Edit -->
-                          <div class="modal fade" data-backdrop="false" id="modal-{{proyek.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Ganti Nama Proyek</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
+                            <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                <div class="form-group inputDnD">
+                                    <label class="sr-only" for="inputFile">File Upload</label>
+                                    <input type="file" class="form-control-file text-primary " id="inputFile" accept="" 
+                                    onchange="readUrl(this)" data-title="Drag and drop Database">
                                 </div>
-                                <div class="modal-body">
-
-                                  <form method="post" action="/ganti_proyek/{{proyek.id}}">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Nama Proyek:</label>
-                                      <input required name="nama_proyek" value="{{proyek.nama_proyek}}" type="text" class="form-control" id="recipient-name">
-                                    </div>
-
                                 </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                  <button type="submit" value="" class="btn btn-primary">Ganti</button>
-                                </div>
-                                  </form>
-                              </div>
                             </div>
-                          </div>
 
+                            <script type="text/javascript">
+                                function readUrl(input) {
+                            
+                                if (input.files && input.files[0]) {
+                                    let reader = new FileReader();
+                                    reader.onload = (e) => {
+                                    let imgData = e.target.result;
+                                    let imgName = input.files[0].name;
+                                    input.setAttribute("data-title", imgName);
+                                    console.log(e.target.result);
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                                }
+                            </script>
 
-                          {% endfor %}
-                              </ul>
-                          {% else %}
-                              <p>No polls are available.</p>
-                          {% endif %}
-                         
-                        </tbody>
-                      </table>
-                    </div>
+                             
+                                
+                                <a href="/hasil" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Ok, Lanjut!</a>
+                            
                   </div>
                 </div>
               </div>
@@ -292,8 +233,6 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
-
-    
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
@@ -309,12 +248,14 @@
     <!-- Custom js for this page -->
     <script src="{% static 'js/dashboard.js' %}"></script>
     <script src="{% static 'js/todolist.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="{% static 'js/dragdrop script.js' %}"></script>
     <!-- End custom js for this page -->
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+    
   
   <!-- Modal -->
   <div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -345,6 +286,7 @@
     </div>
   </div>
 
+    
   </body>
   
 </html>
