@@ -24,19 +24,19 @@ class Proses(models.Model):
         return self.nama_proses
 
 class Database(models.Model):
-    models.OneToOneField(Proyek, on_delete=models.CASCADE)
+    proyek = models.OneToOneField(Proyek, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id)
 
 class BPMN(models.Model):
-    models.OneToOneField(Proses, on_delete=models.CASCADE)
+    proses = models.OneToOneField(Proses, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id)
 
 class DataObject(models.Model):
-    proses = models.ForeignKey(Proses, on_delete=models.CASCADE)
+    proses = models.ForeignKey(BPMN, on_delete=models.CASCADE)
     nama_data_objek = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
 

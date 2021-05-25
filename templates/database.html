@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CDG</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+   
     {% load static %}
     
     <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -132,9 +131,9 @@
 
           <ul class="breadcrumb" aria-label="breadcrumb">
             <ol class="breadcrumb my-2">
-                <li class="breadcrumb-item"><a href="/home">Inisiasi</a></li>
+                <li class="breadcrumb-item active"><a href="/home">Inisiasi</a></li>
                 <li class="breadcrumb-item active"><a href="#">Translasi Proyek {{ proyek.nama_proyek }}</a></li>
-                <li class="breadcrumb-item active"><a href="#">Upload Database Proyek {{ proyek.nama_proyek }}</a></li>
+                <li class="breadcrumb-item">Upload Database Proyek {{ proyek.nama_proyek }}</li>
                 
             </ol>
           </ul>
@@ -163,7 +162,7 @@
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                   </li> {% endcomment %}
 
-                  <div class="search-field d-none d-md-block">
+                  {% comment %} <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                       <div class="input-group">
                         <div class="input-group-prepend bg-transparent">
@@ -172,7 +171,7 @@
                         <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proyek">
                       </div>
                     </form>
-                  </div>
+                  </div> {% endcomment %}
 
                 </ul>
               </nav>

@@ -50,6 +50,7 @@
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
 
+
 .inputDnD .form-control-file {
   position: relative;
   width: 100%;
@@ -2073,6 +2074,11 @@ progress {
 ::-webkit-file-upload-button {
   font-family: "ubuntu-bold", sans-serif;
   -webkit-appearance: button; 
+  border-color: white;
+  border-radius: 12px;
+  padding: 10px 15px 10px 15px;
+  background: #9a55ff;
+  color: white;
 }
 
 output {
@@ -2113,7 +2119,7 @@ h6, .h6 {
   font-size: 1rem; }
 
 h7, .h7 {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 
 .lead {
@@ -4343,9 +4349,10 @@ fieldset:disabled a.btn {
 
 .btn-outline-danger {
   color: #fe7c96;
-  border-color: #fe7c96; }
+  border-color: #fe7c96;
+  border-radius: 16px; }
   .btn-outline-danger:hover {
-    color: #212529;
+    color: #fff;
     background-color: #fe7c96;
     border-color: #fe7c96; }
   .btn-outline-danger:focus, .btn-outline-danger.focus {
@@ -4356,7 +4363,7 @@ fieldset:disabled a.btn {
     background-color: transparent; }
   .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger:not(:disabled):not(.disabled).active,
   .show > .btn-outline-danger.dropdown-toggle {
-    color: #212529;
+    color: #fff;
     background-color: #fe7c96;
     border-color: #fe7c96; }
     .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .btn-outline-danger:not(:disabled):not(.disabled).active:focus,
