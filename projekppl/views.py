@@ -1,4 +1,4 @@
-from cdg.models import Proyek, Proses, BPMN, DataObject
+from cdg.models import Proyek, Proses, BPMN, DataObject, Database, Entitas, Atribut, Relasi
 from projekppl.forms import ProyekForm, ProsesForm, BPMNForm, DataObjectForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from xml.dom import minidom
+
+import re
 
 def splash(request):
     return render(request, 'splash.html')
@@ -35,6 +37,96 @@ def ganti_proyek(request, id):
         form.save()  
         return redirect("/home")  
     return render(request, 'index.html', {'proyek': proyek})  
+
+def upload_database(request, id):
+    proyek = Proyek.objects.get(id=id)
+    #proyek2 = Proyek.objects.filter(proyek_id=proses.proyek_id)
+    if request.method == 'POST':
+        if proyek.database_id is None:
+            file_database = request.FILES['fileDatabase']
+            nama_database = file_database.name
+            file = FileSystemStorage()
+            file.save(file_database.name, file_database)
+
+            basisdata = Database(nama_database=nama_database, proyek_id=id)
+            basisdata.save()
+            proyek.database_id = basisdata.id
+            proyek.save()
+
+            file_database = open(settings.BASE_DIR + '/media/' + file_database.name)
+            info_database = minidom.parse(file_database)
+            basisdata_parse = info_database.getElementsByTagName('pma:table')
+            for elem in basisdata_parse:
+                entitas = elem.attributes['name'].value #ambil nama tabel/entitas
+                id_database = Database.objects.latest('id')
+                entitas2 = Entitas(nama_entitas=entitas, database_id=id_database.id)
+                entitas2.save()
+
+                atribut = elem.firstChild.nodeValue #ambil text dari tag 'name'
+                id_entitas = Entitas.objects.latest('id')
+
+                atribut2 = re.findall(r"(?<=  `)[a-zA-Z0-9_]+(?=\W*`)", atribut) #filtering buat ambil atribut dari variable 'atribut'
+                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\()", atribut)  # filtering buat ambil tipe data dari variable 'atribut'
+                iterasi=0
+                for i in atribut2:
+                    atribut3 = Atribut(nama_atribut=atribut2[iterasi], entitas_id=id_entitas.id, tipe_data=tipe_data[iterasi])
+                    atribut3.save()
+                    iterasi=iterasi+1
+
+                relasi = re.findall(r"(?<=REFERENCES `)[a-zA-Z0-9_]+(?=\W*`)", atribut) #filter buat ambil relasi dari variable 'atribut'
+                iterasi = 0
+                for i in relasi:
+                    relasi2 = Relasi(berelasi_dengan=relasi[iterasi], entitas_id=id_entitas.id)
+                    relasi2.save()
+                    iterasi = iterasi+1
+        else:
+            file_database = request.FILES['fileDatabase']
+            nama_database = file_database.name
+            file = FileSystemStorage()
+            file.save(file_database.name, file_database)
+
+            Database.objects.filter(proyek_id=id).delete()
+
+            basisdata = Database(nama_database=nama_database, proyek_id=id)
+            basisdata.save()
+            proyek.database_id = basisdata.id
+            proyek.save()
+
+            file_database = open(settings.BASE_DIR + '/media/' + file_database.name)
+            info_database = minidom.parse(file_database)
+            basisdata_parse = info_database.getElementsByTagName('pma:table')
+            for elem in basisdata_parse:
+                entitas = elem.attributes['name'].value  # ambil nama tabel/entitas
+                id_database = Database.objects.latest('id')
+                entitas2 = Entitas(nama_entitas=entitas, database_id=id_database.id)
+                entitas2.save()
+
+                atribut = elem.firstChild.nodeValue  # ambil text dari tag 'name'
+                id_entitas = Entitas.objects.latest('id')
+
+                atribut2 = re.findall(r"(?<=  `)[a-zA-Z0-9_]+(?=\W*`)",
+                                      atribut)  # filtering buat ambil atribut dari variable 'atribut'
+                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\()",
+                                       atribut)  # filtering buat ambil tipe data dari variable 'atribut'
+                iterasi = 0
+                for i in atribut2:
+                    atribut3 = Atribut(nama_atribut=atribut2[iterasi], entitas_id=id_entitas.id, tipe_data=tipe_data[iterasi])
+                    atribut3.save()
+                    iterasi = iterasi + 1
+
+                relasi = re.findall(r"(?<=REFERENCES `)[a-zA-Z0-9_]+(?=\W*`)",
+                                    atribut)  # filter buat ambil relasi dari variable 'atribut'
+                iterasi = 0
+                for i in relasi:
+                    relasi2 = Relasi(berelasi_dengan=relasi[iterasi], entitas_id=id_entitas.id)
+                    relasi2.save()
+                    iterasi = iterasi+1
+
+        print(entitas)
+        print(atribut2)
+        print(relasi)
+
+    return render(request, 'database.html')
 
 def upload_bpmn(request, id):
     proses = Proses.objects.get(id=id)

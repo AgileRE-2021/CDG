@@ -2,6 +2,7 @@ from django.db import models
 
 class Proyek(models.Model):
     nama_proyek = models.CharField(max_length=50)
+    database_id = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.nama_proyek
@@ -26,6 +27,7 @@ class Proses(models.Model):
 
 class Database(models.Model):
     proyek = models.OneToOneField(Proyek, on_delete=models.CASCADE, null=True)
+    nama_database = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return str(self.id)
@@ -62,7 +64,7 @@ class Atribut(models.Model):
 
 class Relasi(models.Model):
     entitas = models.ForeignKey(Entitas, on_delete=models.CASCADE)
-    berelasi_dengan = models.IntegerField
+    berelasi_dengan = models.CharField(max_length=50, null=True)
     tipe_relasi = models.CharField(max_length=20)
 
     def __str__(self):

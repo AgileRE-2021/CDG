@@ -38,6 +38,8 @@ urlpatterns = [
     path('ganti_proses/<int:id>', views.ganti_proses),
     path('destroy_proses/<int:id>', views.destroy_proses),
     path('upload_bpmn/<int:id>', views.upload_bpmn),
+#add database
+    path('upload_database/<int:id>', views.upload_database),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

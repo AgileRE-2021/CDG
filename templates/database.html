@@ -186,12 +186,15 @@
                             <div class="container">
                             <div class="row">
                                 <div class="col-sm-12 ">
-                                <div class="form-group inputDnD">
-                                    <label class="sr-only" for="inputFile">File Upload</label>
-                                    <input type="file" class="form-control-file text-primary " id="inputFile" accept="" 
-                                    onchange="readUrl(this)" data-title="Drag and drop Database">
-                                </div>
-                                </div>
+                                <form method="post" enctype="multipart/form-data" name="uploadDatabase" action="/upload_database/23">
+                                {% csrf_token %}
+                                  <div class="form-group inputDnD">
+                                      <label class="sr-only" for="inputFile">File Upload</label>
+                                      <input type="file" class="form-control-file text-primary " id="inputFile" name="fileDatabase" accept=".xml,text/xml"
+                                      onchange="readUrl(this)" data-title="Drag and drop Database">
+                                  </div>
+                                  </div>
+                                </form>
                             </div>
 
                             <script type="text/javascript">
@@ -208,6 +211,12 @@
                                     reader.readAsDataURL(input.files[0]);
                                 }
                                 }
+
+                                const realFileBtn = document.getElementById("inputFile");
+
+                                realFileBtn.addEventListener("change", function(){
+                                    uploadDatabase.submit();
+                                });
                             </script>
 
                              
