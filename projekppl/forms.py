@@ -7,7 +7,7 @@ from cdg.models import BPMN
 class ProyekForm(forms.ModelForm):  
     class Meta:  
         model = Proyek 
-        fields = "__all__"  
+        fields = ['nama_proyek']  
 
 class ProsesForm(forms.ModelForm):  
     class Meta:  

@@ -66,7 +66,7 @@ def upload_database(request, id):
                 id_entitas = Entitas.objects.latest('id')
 
                 atribut2 = re.findall(r"(?<=  `)[a-zA-Z0-9_]+(?=\W*`)", atribut) #filtering buat ambil atribut dari variable 'atribut'
-                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\()", atribut)  # filtering buat ambil tipe data dari variable 'atribut'
+                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\(| N)", atribut)  # filtering buat ambil tipe data dari variable 'atribut'
                 iterasi=0
                 for i in atribut2:
                     atribut3 = Atribut(nama_atribut=atribut2[iterasi], entitas_id=id_entitas.id, tipe_data=tipe_data[iterasi])
@@ -75,7 +75,7 @@ def upload_database(request, id):
 
                 relasi = re.findall(r"(?<=REFERENCES `)[a-zA-Z0-9_]+(?=\W*`)", atribut) #filter buat ambil relasi dari variable 'atribut'
                 iterasi = 0
-                for i in relasi:
+                for j in relasi:
                     relasi2 = Relasi(berelasi_dengan=relasi[iterasi], entitas_id=id_entitas.id)
                     relasi2.save()
                     iterasi = iterasi+1
@@ -126,7 +126,7 @@ def upload_database(request, id):
         print(atribut2)
         print(relasi)
 
-    return render(request, 'database.html')
+    return render(request,'database.html', {'proyek' : proyek})
 
 def upload_bpmn(request, id):
     proses = Proses.objects.get(id=id)
@@ -148,7 +148,12 @@ def upload_bpmn(request, id):
             data_object = info_bpmn.getElementsByTagName('DataObject')
             for elem in data_object:
                 bpmn2 = BPMN.objects.latest('id')
-                data = DataObject(bpmn_id=bpmn2.id, nama_data_objek=elem.attributes['Name'].value, state=elem.attributes['State'].value)
+                nama_elem = elem.attributes['Name'].value
+                nama_lower = nama_elem.lower()
+                if nama_lower[-1] == " ":
+                    nama_lower = nama_lower[:-1]
+                nama_hasil = nama_lower.replace(" ", "_")
+                data = DataObject(bpmn_id=bpmn2.id, nama_data_objek=nama_hasil, state=elem.attributes['State'].value)
                 #DataObject.objects.create(bpmn=id_bpmn, nama_data_objek=elem.attributes['Name'].value, state=elem.attributes['State'].value)
                 data.save()
                 #path = settings.MEDIA_ROOT
@@ -220,13 +225,50 @@ def destroy_proses(request, id):
     proses.delete()
     return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id, 'proyek':proyek}) 
 
-def hasil(request):
-    return render(request,'hasil.html')
-
-def database(request):
-    return render(request,'database.html')
+def hasil(request, id):
+    proyek = Proyek.objects.get(id=id)
+    return render(request,'hasil.html', {'proyek' : proyek})
 
 #DATABASE
 
-def database(request):
-    return render(request,'database.html')
+def database(request, id):
+    proyek = Proyek.objects.get(id=id)
+    return render(request,'database.html', {'proyek' : proyek})
+
+#DOWNLOAD
+
+def download(request, id):
+    proyek = Proyek.objects.get(id=id)
+    f = open(proyek.nama_proyek + ".txt","w+")
+
+    proses = Proses.objects.filter(proyek_id=id)
+    
+    data_dict = {}
+    #PENGAMBILAN NAMA CLASS dan STATE DARI DATAOBJECT
+    array_class = []
+    array_state = []
+    for nilai in proses:
+        data = DataObject.objects.filter(bpmn_id=nilai.bpmn_id)
+        for nilai2 in data:
+            array_class.append(nilai2.nama_data_objek)
+
+    array_class = set(array_class)
+
+    for nilai in proses:
+        data = DataObject.objects.filter(bpmn_id=nilai.bpmn_id)
+        i=0
+        for nilai2 in data:
+            if nilai2.nama_data_objek == array_class[i]:
+                data_dict[array_class[i]].append(nilai2.state)
+            i=i+1
+    
+    print(data_dict)
+    #PENGAMBILAN NAMA CLASS DARI DATAOBJECT END
+    
+    #PENGAMBILAN ATRIBUT TIAP CLASS
+
+    #PENGAMBILAN ATRIBUT TIAP CLASS END
+
+    f.write(str(array_class))
+    f.close()
+    return render(request,'database.html', {'proyek' : proyek})

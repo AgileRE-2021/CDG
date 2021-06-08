@@ -25,7 +25,7 @@ urlpatterns = [
     path('home', views.home, name='home' ),
     path('hasil', views.hasil, name='hasil'),
 
-    path('database', views.database, name='database'),
+    
 
 # ==== crud ====
 #add proyek
@@ -39,7 +39,14 @@ urlpatterns = [
     path('destroy_proses/<int:id>', views.destroy_proses),
     path('upload_bpmn/<int:id>', views.upload_bpmn),
 #add database
+    path('database/<int:id>', views.database),
     path('upload_database/<int:id>', views.upload_database),
+
+#hasildonlot
+    path('hasil/<int:id>', views.hasil, name='hasil'),
+
+#donlot
+    path('download/<int:id>', views.download, name='download'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
