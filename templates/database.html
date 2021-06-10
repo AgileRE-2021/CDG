@@ -132,7 +132,6 @@
           <ul class="breadcrumb" aria-label="breadcrumb">
             <ol class="breadcrumb my-2">
                 <li class="breadcrumb-item active"><a href="/home">Inisiasi</a></li>
-                <li class="breadcrumb-item active"><a href="#">Translasi Proyek {{ proyek.nama_proyek }}</a></li>
                 <li class="breadcrumb-item">Upload Database Proyek {{ proyek.nama_proyek }}</li>
                 
             </ol>
@@ -181,17 +180,24 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Upload Database</h4>
+                    {% if proyek.database_id %}
+                      <h4 class="card-title">Database Telah Terunggah</h4>
+                    {% else %}
+                      <h4 class="card-title">Upload Database (Database Belum Terunggah)</h4>
+                    {% endif %}
 
                             <div class="container">
                             <div class="row">
                                 <div class="col-sm-12 ">
-                                <div class="form-group inputDnD">
-                                    <label class="sr-only" for="inputFile">File Upload</label>
-                                    <input type="file" class="form-control-file text-primary " id="inputFile" accept="" 
-                                    onchange="readUrl(this)" data-title="Drag and drop Database">
-                                </div>
-                                </div>
+                                <form method="post" enctype="multipart/form-data" name="uploadDatabase" action="/upload_database/{{proyek.id}}">
+                                {% csrf_token %}
+                                  <div class="form-group inputDnD">
+                                      <label class="sr-only" for="inputFile">File Upload</label>
+                                      <input type="file" class="form-control-file text-primary " id="inputFile" name="fileDatabase" accept=".xml,text/xml"
+                                      onchange="readUrl(this)" data-title="Drag and drop Database">
+                                  </div>
+                                  </div>
+                                </form>
                             </div>
 
                             <script type="text/javascript">
@@ -208,11 +214,17 @@
                                     reader.readAsDataURL(input.files[0]);
                                 }
                                 }
+
+                                const realFileBtn = document.getElementById("inputFile");
+
+                                realFileBtn.addEventListener("change", function(){
+                                    uploadDatabase.submit();
+                                });
                             </script>
 
                              
                                 
-                                <a href="/hasil" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Ok, Lanjut!</a>
+                                <a href="/hasil/{{proyek.id}}" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Ok, Lanjut!</a>
                             
                   </div>
                 </div>

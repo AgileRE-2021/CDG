@@ -167,6 +167,13 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            <ul class="breadcrumb" aria-label="breadcrumb">
+              <ol class="breadcrumb my-2">
+                  <li class="breadcrumb-item"><a href="/home">Download Hasil</a></li>
+                  <li class="breadcrumb-item active">{{ proyek.nama_proyek }}</li>
+                  
+              </ol>
+            </ul>
             <div class="row" id="proBanner">
               <div class="col-12">
                 {% comment %} <span class="d-flex align-items-center purchase-popup">
@@ -223,18 +230,22 @@
                         
                         <tbody>
 
-                        
+                        {% if proyek %}
+                          <tr>                      
                           <tr>
                             <td> 1 </td>
-                            <td> Bangun Kehidupan </td>
+                            <td> {{ proyek.nama_proyek }} </td>
                             <td> 
                           
-                            <button type="button" class="btn btn-gradient-success">JPG</button>
-                            <button type="button" class="btn btn-gradient-danger">PNG</button>
-                            <button type="button" class="btn btn-gradient-info">SVG</button>
+                            <a href="/download/{{proyek.id}}"> <button type="button" class="btn btn-gradient-success">Download TXT PLantUML</button> </a>
+                            <a href="/download-png/{{proyek.id}}"> <button type="button" class="btn btn-gradient-danger">PNG</button> </a>
                             </td>
                            
                           </tr>
+                              </ul>
+                        {% else %}
+                              <p>Proyek ini belum memiliki proses</p>
+                        {% endif %}
                          
                         </tbody>
                       </table>
