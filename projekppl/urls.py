@@ -47,6 +47,7 @@ urlpatterns = [
 
 #donlot
     path('download/<int:id>', views.download, name='download'),
+    path('download-png/<int:id>', views.downloadpng, name='downloadpng'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
