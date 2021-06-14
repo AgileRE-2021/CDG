@@ -10,7 +10,6 @@ import mimetypes
 from django.http.response import HttpResponse
 import re
 import copy
-import Image
 import string    
 import random
 
@@ -600,8 +599,6 @@ def downloadpng(request, id):
         with open(filepath, "rb") as f:
             return HttpResponse(f.read(), content_type="image/jpeg")
     except IOError:
-        red = Image.new('RGBA', (1, 1), (255,0,0,0))
-        response = HttpResponse(content_type="image/jpeg")
-        red.save(response, "JPEG")
-        return response
+        html = "<html><body> Komputer anda butut tidak support </body></html>"
+        return HttpResponse(html)
 
