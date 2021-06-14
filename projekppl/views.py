@@ -10,7 +10,7 @@ import mimetypes
 from django.http.response import HttpResponse
 import re
 import copy
-
+import Image
 import string    
 import random
 
@@ -135,7 +135,7 @@ def upload_database(request, id):
 
                 atribut2 = re.findall(r"(?<=  `)[a-zA-Z0-9_]+(?=\W*`)",
                                       atribut)  # filtering buat ambil atribut dari variable 'atribut'
-                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\(| N)",
+                tipe_data = re.findall(r"(?<=` )[a-zA-Z0-9_]+(?=\W*\(| N| D)",
                                        atribut)  # filtering buat ambil tipe data dari variable 'atribut'
                 iterasi = 0
                 for i in atribut2:
@@ -154,9 +154,6 @@ def upload_database(request, id):
 
     return render(request,'database.html', {'proyek' : proyek})
 
-def isset(nameVar):
-    return nameVar in globals()
-    
 def upload_bpmn(request, id):
     proses = Proses.objects.get(id=id)
     proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
