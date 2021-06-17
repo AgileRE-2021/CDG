@@ -23,9 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.splash, name='splash' ),
     path('home', views.home, name='home' ),
-    path('hasil', views.hasil, name='hasil'),
-
-    
 
 # ==== crud ====
 #add proyek
@@ -44,6 +41,7 @@ urlpatterns = [
 
 #hasildonlot
     path('hasil/<int:id>', views.hasil, name='hasil'),
+    path('hasil', views.hasilall, name='hasilall'),
 
 #donlot
     path('download/<int:id>', views.download, name='download'),
