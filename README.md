@@ -76,7 +76,15 @@ Petunjuk mengenai prosedur instalasi untuk aplikasi CDG dilakukan pada sesi term
    ```sh
    pip install django-bootstrap-v5
    ```
-7. Jalankan aplikasi pada *localhost*
+7. Lakukan instalasi plantUML
+   ```sh
+   pip install plantuml
+   ```
+8. Lakukan instalasi library Six
+   ```sh
+   pip install six
+   ```
+9. Jalankan aplikasi pada *localhost*
    ```sh
    py manage.py runserver
    ```
