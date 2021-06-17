@@ -151,11 +151,14 @@ def upload_database(request, id):
                     relasi2.save()
                     iterasi = iterasi+1
 
-    return render(request,'database.html', {'proyek' : proyek})
+    database = Database.objects.get(proyek_id=id)
+    namafiledb= database.nama_database
+    return render(request,'database.html', {'proyek' : proyek , 'database': namafiledb})
 
 def upload_bpmn(request, id):
     proses = Proses.objects.get(id=id)
-    proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
+    proyek = Proyek.objects.get(id=proses.proyek_id)
+
     if request.method == 'POST':
         if proses.bpmn_id is None:
             file_bpmn = request.FILES['bpmn']
@@ -290,8 +293,14 @@ def upload_bpmn(request, id):
                 data.save()
                 #path = settings.MEDIA_ROOT
                 #os.remove(os.path.join(path, file_bpmn.replace('/', '\\')))
-                
-    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id}) 
+    proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
+    status = None
+
+    for nilai in proses2:
+        if nilai.bpmn_id is None:
+            status = "belumbisauploaddatabase"
+    
+    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id , 'proyek':proyek, 'status':status}) 
 
 def destroy_proyek(request, id):  
     proyek = Proyek.objects.get(id=id)  
@@ -302,12 +311,25 @@ def destroy_proyek(request, id):
 def translasi(request, id):
     proses = Proses.objects.filter(proyek_id=id)
     proyek = Proyek.objects.get(id=id)
-    return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek})
+    status = None
+
+    panjang = len(proses)
+
+    if panjang==0:
+        status="belumbisauploaddatabase"
+
+    for nilai in proses:
+        if nilai.bpmn_id == None:
+            status = "belumbisauploaddatabase"
+
+    print("INI STATUSNYA", status)
+    return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek , 'status':status})
 
 def tambah_proses(request, id):
     proses = Proses.objects.filter(proyek_id=id)
     proyek = Proyek.objects.get(id=id)
     form = ProsesForm()
+
     if request.method == 'POST':
         proyekID = Proyek.objects.get(id=id)
         form = ProsesForm(request.POST)
@@ -317,7 +339,15 @@ def tambah_proses(request, id):
             formulir = form.save(commit=False)
             formulir.proyek = proyekID
             formulir.save()
-            return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek})
+            proses = Proses.objects.filter(proyek_id=id)
+            proyek = Proyek.objects.get(id=id)
+            status = None
+            for nilai in proses:
+                if nilai.bpmn_id is None:
+                    status = "belumbisauploaddatabase"
+                else:
+                    status = None
+            return render(request,'translasi.html',{'posts':proses , 'idproyek' : id , 'proyek':proyek , 'status':status})
         else:
             print("FORM GA VALID")
     context = {'form': form}
@@ -327,29 +357,65 @@ def ganti_proses(request, id):
     proses = Proses.objects.get(id=id)
     proyek = Proyek.objects.get(id=proses.proyek_id)
     proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
+
+    status = None
+
+    for nilai in proses2:
+        if nilai.bpmn_id is None:
+            status = "belumbisauploaddatabase"
+        else:
+            status = None
+
     form = ProsesForm(request.POST, instance = proses)  
     if form.is_valid():  
-        form.save()  
-        return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id , 'proyek':proyek}) 
+        form.save()
+        proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
+        print("ISI DARI PROSES", proses2)
+        return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id , 'proyek':proyek, 'status':status}) 
     return redirect('/home')  
 
 def destroy_proses(request, id): 
      
     proses = Proses.objects.get(id=id)
-    proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
     proyek = Proyek.objects.get(id=proses.proyek_id) 
     proses.delete()
-    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id, 'proyek':proyek}) 
+
+    status = None
+    proses2 = Proses.objects.filter(proyek_id=proses.proyek_id)
+
+    panjang = len(proses2)
+
+    if panjang==0:
+        status="belumbisauploaddatabase"
+
+    print("NILAI STATUS", status)
+
+    for nilai in proses2:
+        if nilai.bpmn_id is None:
+            status = "belumbisauploaddatabase"
+    
+    return render(request,'translasi.html',{'posts':proses2 , 'idproyek' : proses.proyek_id, 'proyek':proyek , 'status':status}) 
 
 def hasil(request, id):
     proyek = Proyek.objects.get(id=id)
+    return render(request,'hasil.html', {'proyek' : proyek})
+
+def hasilall(request):
+    proyek = Proyek.objects.filter(database_id__isnull=False)
+
     return render(request,'hasil.html', {'proyek' : proyek})
 
 #DATABASE
 
 def database(request, id):
     proyek = Proyek.objects.get(id=id)
-    return render(request,'database.html', {'proyek' : proyek})
+    namafiledb= ""
+
+    if proyek.database_id:
+        database = Database.objects.get(proyek_id=id)
+        namafiledb= database.nama_database
+
+    return render(request,'database.html', {'proyek' : proyek , 'database': namafiledb})
 
 #DOWNLOAD
 

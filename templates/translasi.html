@@ -131,7 +131,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/manual">
+              <a class="nav-link">
                 <span class="menu-title">User Manual</span>
                 <i class="mdi mdi-video menu-icon"></i>
               </a>
@@ -145,8 +145,8 @@
 
           <ul class="breadcrumb" aria-label="breadcrumb">
             <ol class="breadcrumb my-2">
-                <li class="breadcrumb-item"><a href="/home">Inisiasi Proyek</a></li>
-                <li class="breadcrumb-item active">Translasi Proyek - {{ proyek.nama_proyek }}</li>
+                <li class="breadcrumb-item"><a href="/home">Data Proyek</a></li>
+                <li class="breadcrumb-item active">Data Proses - {{ proyek.nama_proyek }}</li>
                 
             </ol>
           </ul>
@@ -186,7 +186,7 @@
                         <div class="input-group-prepend bg-transparent">
                           <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proses">
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proses (ARVA BENERIN)">
                       </div>
                     </form>
                   </div>
@@ -232,7 +232,7 @@
                             <td>
                               <form method="post" enctype="multipart/form-data" action="/upload_bpmn/{{proses.id}}" name="upload_bpmn">
                                 {% csrf_token %}
-                                <input type="file" class="bpmn" name="bpmn"  id="id_bpmn actual-btn" Required>
+                                <input type="file" name="bpmn"  id="id_bpmn actual-btn" Required>
                                 {% comment %} <div class="progress">
                                   <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div> {% endcomment %}
@@ -245,7 +245,6 @@
                               </form>
                             <br>
                             {% if proses.bpmn_id %}
-                             
                                 <h7 style="color:#0000CD";> File Telah Terunggah! </h7>
                                 {% else %}
                                 <h7 style="color:#FF0000";> File Belum Terunggah! </h7>
@@ -288,14 +287,25 @@
                        
                         </tbody>
                       </table>
-                      <span class="nav-link ">
-                        <div class="border-bottom"> 
-                        </div>
-                        <a href="/database/{{idproyek}}" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Upload Database</a>
-                      </span>
                     </div>
                   </div>
                 </div>
+                {% if status == None %}
+                <span class="nav-link ">
+                  <div class="border-bottom"> 
+                  </div>
+                  <a href="/database/{{idproyek}}" class="btn btn-block btn-lg btn-gradient-primary mt-4"> Kelola Database</a>
+                </span>
+                {% else %}
+                <span class="nav-link ">
+                  <div class="border-bottom"> 
+                  </div>
+                  <a class="btn btn-block btn-lg btn-gradient-primary mt-4"> Kelola Database</a>
+                </span>
+                <center> 
+                    <h6 style="text-align: center; color: red;"> HARAP TENANG ADA UJIAN DATABASE (ARVA BENERIN) </h6>
+                </center>
+                {% endif %}
               </div>
             </div>
             
