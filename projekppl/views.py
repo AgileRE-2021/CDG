@@ -502,6 +502,18 @@ def download(request, id):
                     row.append(nilai5.berelasi_dengan)
                 table.append(row)
 
+    table_unique = []
+    for h in table: 
+        if h not in table_unique:
+            table_unique.append(h)
+    
+    panjang_tablea=len(table)
+    panjang_tableb=len(table_unique)
+
+    if panjang_tablea != panjang_tableb:
+        html = "<html><body> TABEL PADA DATABASE ANDA MENGANDUNG 2 FOREIGN KEY DARI 1 TABEL </body></html>"
+        return HttpResponse(html)
+
     new_list = copy.deepcopy(table)
 
     new_table = copy.deepcopy(table)
@@ -624,6 +636,19 @@ def downloadpng(request, id):
                     row.append(entitas.nama_entitas)
                     row.append(nilai5.berelasi_dengan)
                 table.append(row)
+
+
+    table_unique = []
+    for h in table: 
+        if h not in table_unique:
+            table_unique.append(h)
+    
+    panjang_tablea=len(table)
+    panjang_tableb=len(table_unique)
+
+    if panjang_tablea != panjang_tableb:
+        html = "<html><body> TABEL PADA DATABASE ANDA MENGANDUNG 2 FOREIGN KEY DARI 1 TABEL </body></html>"
+        return HttpResponse(html)
 
     new_list = copy.deepcopy(table)
 
