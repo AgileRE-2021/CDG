@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.0.4
+- https://www.phpmyadmin.net
+-
+- Host: localhost
+- Generation Time: Jun 08, 2021 at 07:05 AM
+- Server version: 10.4.16-MariaDB
+- PHP Version: 7.3.24
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="SCM" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="BARANG">
+                CREATE TABLE `BARANG` (
+                  `ID_BARANG` int(11) NOT NULL,
+                  `NAMA_BARANG` varchar(1024) NOT NULL,
+                  `JUMLAH_STOK` varchar(1024) NOT NULL,
+                  PRIMARY KEY (`ID_BARANG`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="BARANG_KELUAR">
+                CREATE TABLE `BARANG_KELUAR` (
+                  `ID_REQUEST` int(11) NOT NULL,
+                  `ID_BARANG` int(11) NOT NULL,
+                  PRIMARY KEY (`ID_REQUEST`,`ID_BARANG`),
+                  KEY `FK_BARANG_KELUAR2` (`ID_BARANG`),
+                  CONSTRAINT `FK_BARANG_KELUAR` FOREIGN KEY (`ID_REQUEST`) REFERENCES `REQUEST` (`ID_REQUEST`),
+                  CONSTRAINT `FK_BARANG_KELUAR2` FOREIGN KEY (`ID_BARANG`) REFERENCES `BARANG` (`ID_BARANG`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="BARANG_MASUK">
+                CREATE TABLE `BARANG_MASUK` (
+                  `ID_RESTOCK` int(11) NOT NULL,
+                  `ID_BARANG` int(11) NOT NULL,
+                  PRIMARY KEY (`ID_RESTOCK`,`ID_BARANG`),
+                  KEY `FK_BARANG_MASUK2` (`ID_BARANG`),
+                  CONSTRAINT `FK_BARANG_MASUK` FOREIGN KEY (`ID_RESTOCK`) REFERENCES `RESTOCK` (`ID_RESTOCK`),
+                  CONSTRAINT `FK_BARANG_MASUK2` FOREIGN KEY (`ID_BARANG`) REFERENCES `BARANG` (`ID_BARANG`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="REQUEST">
+                CREATE TABLE `REQUEST` (
+                  `ID_REQUEST` int(11) NOT NULL,
+                  `NAMA_PEMOHON` varchar(1024) NOT NULL,
+                  `WAKTU_REQUEST` datetime NOT NULL,
+                  PRIMARY KEY (`ID_REQUEST`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="RESTOCK">
+                CREATE TABLE `RESTOCK` (
+                  `ID_RESTOCK` int(11) NOT NULL,
+                  `WAKTU_RESTOCK` datetime NOT NULL,
+                  PRIMARY KEY (`ID_RESTOCK`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'SCM'
+    -->
+    <database name="SCM">
+        <!-- Table BARANG -->
+        <!-- Table BARANG_KELUAR -->
+        <!-- Table BARANG_MASUK -->
+        <!-- Table REQUEST -->
+        <!-- Table RESTOCK -->
+    </database>
+</pma_xml_export>

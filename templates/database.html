@@ -150,7 +150,7 @@
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
                   <i class="mdi mdi-presentation"></i>
-                </span> Database
+                </span> Database - {{ proyek.nama_proyek }}
               </h3>
 
                
@@ -181,9 +181,9 @@
                 <div class="card">
                   <div class="card-body">
                     {% if proyek.database_id %}
-                      <h4 class="card-title">Database Telah Terunggah (ARVA BENERIN)</h4>
+                      <h4 class="card-title" style="text-align: center; color: blue;" >Database Telah Terunggah!</h4>
                     {% else %}
-                      <h4 class="card-title">Upload Database (Database Belum Terunggah)</h4>
+                      <h4 class="card-title" style="text-align: center; color: red;">Upload Database!</h4>
                     {% endif %}
 
                             <div class="container">
@@ -241,7 +241,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © kelompok 4 2021</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © kelompok 4 - 2021</span>
               {% comment %} <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span> {% endcomment %}
             </div>
           </footer>

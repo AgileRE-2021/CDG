@@ -86,23 +86,8 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
-            {% comment %} <li class="nav-item nav-profile">
-              <a href="#" class="nav-link">
-                <div class="nav-profile-image">
-                  <img src="{% static 'images/faces/face1.jpg' %}" alt="profile">
-                  <span class="login-status online"></span>
-                  <!--change to offline or busy as needed-->
-                </div>
-                <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">David Grey. H</span>
-                  <span class="text-secondary text-small">Project Manager</span>
-                </div>
-                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-              </a>
-            </li> {% endcomment %}
 
-
-            <li class="nav-item ">
+            <li class="nav-item active">
               <a class="nav-link" href="/home">
                 <span class="menu-title">Inisiasi Proyek</span>
                 <i class="mdi mdi-shape-polygon-plus menu-icon"></i>
@@ -170,17 +155,14 @@
                 </span>Data Proses - {{ proyek.nama_proyek }}
               </h3>
 
-                <span class="nav-link">
-                  <button class="btn btn-block btn-lg btn-gradient-primary"
-                  data-toggle="modal" data-target="#exampleModaltambah">+ Tambah Proses</button>
-                </span>
+                
         
               <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
+                <ul class="breadcrumb nav-link">
                   {% comment %} <li class="breadcrumb-item active" aria-current="page">
                     <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                   </li> {% endcomment %}
-                  <div class="search-field d-none d-md-block">
+                  {% comment %} <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                       <div class="input-group">
                         <div class="input-group-prepend bg-transparent">
@@ -189,8 +171,12 @@
                         <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proses (ARVA BENERIN)">
                       </div>
                     </form>
-                  </div>
-
+                  </div> {% endcomment %}
+                  
+               
+                  <button type="button" class="btn btn-block btn-lg btn-gradient-primary"
+                  data-toggle="modal" data-target="#exampleModaltambah">+ Tambah Proses</button>
+              
                 </ul>
               </nav>
             </div>
@@ -303,7 +289,7 @@
                   <a class="btn btn-block btn-lg btn-gradient-primary mt-4"> Kelola Database</a>
                 </span>
                 <center> 
-                    <h6 style="text-align: center; color: red;"> HARAP TENANG ADA UJIAN DATABASE (ARVA BENERIN) </h6>
+                    <h7 style="text-align: center; color: red;"> Harap lengkapi BPMN terlebih dahulu </h7>
                 </center>
                 {% endif %}
               </div>
@@ -313,7 +299,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © kelompok 4 2021</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © kelompok 4 - 2021</span>
               {% comment %} <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates </a> from Bootstrapdash.com</span> {% endcomment %}
             </div>
           </footer>
@@ -343,7 +329,7 @@
     <!-- End custom js for this page -->
 
       <!-- Modal -->
-  <div class="modal fade" data-backdrop="false" id="exampleModaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
