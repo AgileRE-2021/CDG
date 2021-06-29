@@ -9,7 +9,7 @@
   <p align="center">
     BPMN & Database to Class Diagram Model Generator
     <br />
-    <a href="***link youtube user manual***"><strong>Demo Project »</strong></a>
+    <a href=https://youtu.be/gOxOLRDUUz4><strong>Demo Project »</strong></a>
     <br />
 </p>
 
@@ -104,7 +104,7 @@ Petunjuk mengenai prosedur penggunaan aplikasi CDG dapat dilihat pada bagian di 
 12. File *class diagram* hasil translasi akan otomatis tesimpan pada penyimpanan lokal perangkat anda
 13. Apabila merasa kesulitan dalam menggunakan aplikasi ini, lihat panduan penggunaan dengan klik tab "User Manual" dan jalankan video panduan
 
-> [Video Panduan Penggunaan](***link youtube***)
+> [Video Panduan Penggunaan](https://youtu.be/gOxOLRDUUz4)
 
 ## Informasi Lainnya
 ### Anggota Proyek
