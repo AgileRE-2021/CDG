@@ -15,6 +15,9 @@ import random
 
 import os
 
+def manual(request):
+    return render(request,'manual.html')
+
 def splash(request):
     return render(request, 'splash.html')
 

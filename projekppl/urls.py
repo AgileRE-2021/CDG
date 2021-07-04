@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.splash, name='splash' ),
     path('home', views.home, name='home' ),
+    path('user_manual',views.manual, name='manual'),
 
 # ==== crud ====
 #add proyek

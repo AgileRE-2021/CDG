@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CDG</title>
     <!-- plugins:css -->
+    
     {% load static %}
     
     <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -24,6 +25,7 @@
 
   <body>
     <div class="container-scroller">
+      
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -47,7 +49,6 @@
                   <p class="mb-1 text-black">Kelompok 4</p>
                 </div>
               </a>
-             
             </li>
 
             <li class="nav-item d-none d-lg-block full-screen-link">
@@ -80,58 +81,22 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
+          
             {% comment %} <li class="nav-item nav-profile">
-              <a href="#" class="nav-link">
-                <div class="nav-profile-image">
-                  <img src="{% static 'images/faces/face1.jpg' %}" alt="profile">
-                  <span class="login-status online"></span>
-                  <!--change to offline or busy as needed-->
-                </div>
-                <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">David Grey. H</span>
-                  <span class="text-secondary text-small">Project Manager</span>
-                </div>
-                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-              </a>
+              <span class="nav-link">
+                <button type="button" class="btn btn-block btn-lg btn-gradient-primary mt-4" 
+                data-toggle="modal" data-target="#exampleModal">+ Tambah Proyek
+                </button>
+              </span>
             </li> {% endcomment %}
-        <!-- Modal -->
-            <div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-
-                    <form method="post" action="/home">
-                      {% csrf_token %}
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nama Proyek:</label>
-                        <input name="proyek" type="text" class="form-control" id="recipient-name">
-                      </div>
-                      
-                    </form>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             
-
             <li class="nav-item">
               <a class="nav-link" href="/home">
                 <span class="menu-title">Inisiasi Proyek</span>
                 <i class="mdi mdi-shape-polygon-plus menu-icon"></i>
               </a>
             </li>
-
+            
             {% comment %} <li class="nav-item">
               <a class="nav-link" href="translasi">
                 <span class="menu-title">Translasi Proyek</span>
@@ -144,9 +109,9 @@
                 <span class="menu-title">Database</span>
                 <i class="mdi mdi-database menu-icon"></i>
               </a>
-            </li>  {% endcomment %}
+            </li> {% endcomment %}
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/hasil">
                 <span class="menu-title">Hasil Translasi</span>
                 <i class="mdi mdi-clipboard-text menu-icon"></i>
@@ -162,14 +127,16 @@
             
           </ul>
         </nav>
+        
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <ul class="breadcrumb" aria-label="breadcrumb">
-              <ol class="breadcrumb my-2">
-                  <li class="breadcrumb-item">Hasil Proyek</li>                  
-              </ol>
-            </ul>
+          {% comment %} <ul class="breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb my-2">
+                <li class="breadcrumb-item active">User Manual</li>
+                
+            </ol>
+          </ul> {% endcomment %}
             <div class="row" id="proBanner">
               <div class="col-12">
                 {% comment %} <span class="d-flex align-items-center purchase-popup">
@@ -183,69 +150,20 @@
             <div class="page-header">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                  <i class="mdi mdi-briefcase-check"></i>
-                </span> Hasil Proyek
+                  <i class="mdi mdi-video menu-icon"></i>
+                </span> User Manual
               </h3>
                
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                  {% comment %} <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                  </li> {% endcomment %}
-
-                  {% comment %} <div class="search-field d-none d-md-block">
-                    <form class="d-flex align-items-center h-100" action="#">
-                      <div class="input-group">
-                        <div class="input-group-prepend bg-transparent">
-                          <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                        </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Cari Proyek (ARVA BENERIN)">
-                      </div>
-                    </form>
-                  </div> {% endcomment %}
-
-                </ul>
-              </nav>
+           
             </div>
            
             <div class="row">
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Daftar Proyek</h4>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> No </th>
-                            <th> Proyek </th>
-                            <th> Download </th>
-                            
-                          </tr>
-                        </thead>
-                        
-                        <tbody>
-
-                        {% if proyek %}
-                          {% for pproyek in proyek%}                 
-                            <tr>
-                              <td>{{ forloop.counter }}</td>
-                              <td> {{ pproyek.nama_proyek }} </td>
-                              <td> 
-                            
-                              <a href="/download/{{pproyek.id}}"> <button type="button" class="btn btn-gradient-success">txt PLantUML</button> </a>
-                              <a href="/download-png/{{pproyek.id}}"> <button type="button" class="btn btn-gradient-danger">PNG</button> </a>
-                              </td>
-                            
-                            </tr>
-                          {% endfor %}
-                        {% else %}
-                              <p>Proyek ini belum memiliki proses</p>
-                        {% endif %}
-                         
-                        </tbody>
-                      </table>
-                    </div>
+                    <iframe width="100%" height="625" src="https://www.youtube.com/embed/gOxOLRDUUz4?autoplay=1" 
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
                   </div>
                 </div>
               </div>
@@ -265,7 +183,6 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
-
     
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -284,10 +201,35 @@
     <script src="{% static 'js/todolist.js' %}"></script>
     <!-- End custom js for this page -->
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Proyek</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form method="post" action="/tambah_proyek">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Nama Proyek:</label>
+              <input required name="nama_proyek" type="text" class="form-control" id="recipient-name">{{ form.nama_proyek }}
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" value="" class="btn btn-primary">Tambah</button>
+        </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
   </body>
   
 </html>
