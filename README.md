@@ -74,7 +74,7 @@ Petunjuk mengenai prosedur instalasi untuk aplikasi CDG dilakukan pada sesi term
    ```
 6. Lakukan instalasi *Bootstrap Framework* 
    ```sh
-   pip install django-bootstrap-v5
+   pip install bootstrap4
    ```
 7. Lakukan instalasi plantUML
    ```sh
