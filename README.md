@@ -62,7 +62,7 @@ Petunjuk mengenai prosedur instalasi untuk aplikasi CDG dilakukan pada sesi term
    ```
 3. Masuk ke dalam *virtual environment* 
    ```sh
-   venv\Scripts\activate.bat
+   env\Scripts\activate.bat
    ```
 4. Lakukan instalasi *Django Framework*
    ```sh
